@@ -1,0 +1,11 @@
+﻿body, input, button, textarea { font-family: arial,sans-serif; font-size: 13px; }
+a, abbr, acronym, address, applet, b, big, blockquote, button, canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, fieldset, font, form, h1, h2, h3, h4, h5, h6, hr, html, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var { margin: 0; padding: 0; border: 0; background: transparent; }
+input[type="button"], input[type="submit"], input[type="reset"], input[type="file"]::-webkit-file-upload-button, button { padding: 1px 6px; -webkit-align-items: flex-start; text-align: center; cursor: default; color: buttontext; padding: 2px 6px 3px; border: 2px outset buttonface; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; background-color: buttonface; box-sizing: border-box; }
+input, textarea, keygen, select, button, isindex { margin: 0em; font: -webkit-small-control; color: initial; letter-spacing: normal; word-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none; display: inline-block; text-align: start; }
+input, textarea, keygen, select, button, isindex, meter, progress { -webkit-writing-mode: horizontal-tb; }
+button { -webkit-appearance: button; }
+li { text-align: -webkit-match-parent; }
+menu, ol, ul { list-style: none; list-style-type: none; }
+.ltr.webkit.webkit-537.site-left-aligned.exp-watch7-comment-ui.hitchhiker-enabled.guide-enabled.guide-expanded.page-loaded body, input, button, textarea { font-family: arial,sans-serif; font-size: 13px; }
+body { line-height: 1; text-align: left; text-align: start; }
+.video-time{padding:0 4px;font-weight:bold;font-size:11px;background-color:#000;color:#fff!important;height:14px;line-height:14px;opacity:0.75;filter:alpha(opacity=75);display:-moz-inline-stack;vertical-align:top;zoom:1;display:inline-block;*display:inline;*zoom:1;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}

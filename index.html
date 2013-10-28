@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Javascript Youtube Better Start Page</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="util.js"></script>
+    <script src="ytbsp.js"></script>
+    <link href="youtube.css" rel="stylesheet" type="text/css" />
+    <link href="ytbsp.css" rel="stylesheet" type="text/css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script type='text/javascript'>
+        // If you have downloaded a copy of this script, change the google api keys here.
+        // You can get your own google API keys using the API console for free.
+        // https://code.google.com/apis/console
+        // TODO: Write a document on how to setup your personal copy of the script.
+        var clientId = '591322854520.apps.googleusercontent.com';
+        var apiKey = 'AIzaSyAw1fGMwr07X0uugG_qUATYqb8W3yA2kSQ';
+        // So this is kind of a half good, half bad scenario.
+        // Readonly allows us to show "view your youtube profile" on the authorization screen.
+        // Since 98% of what we're doing here is readonly, that is fine. However, to add
+        // to the watch later playlist of the current user, we would need readwrite.
+        // If you download a copy of this for your own use, you could change this to
+        // 'youtube' instead of 'youtube.readonly' and I may check to see if that scope
+        // is active and enable the watch later button. *shrug*.
+        // TODO: Add checking for scope of "youtube" and add watch later button.
+        var scopes = 'https://www.googleapis.com/auth/youtube.readonly';
+
+        //#region Google API
+        // Use a button to handle authentication the first time.
+        function handleClientLoad() {
+            $(document).tooltip();
+            gapi.client.setApiKey(apiKey);
+            window.setTimeout(checkAuth, 1);
+        }
+
+        function checkAuth() {
+            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, handleAuthResult);
+        }
+
+        function handleAuthResult(authResult) {
+            var authorizeButton = document.getElementById('authorize-button');
+            if (authResult && !authResult.error) {
+                authorizeButton.style.display = 'none';
+                makeApiCall();
+            } else {
+                authorizeButton.style.display = '';
+                authorizeButton.onclick = handleAuthClick;
+            }
+        }
+
+        function handleAuthClick(event) {
+            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: false }, handleAuthResult);
+            return false;
+        }
+
+        function makeApiCall() {
+            gapi.client.load('youtube', 'v3', ytbsp_load);
+        }
+        //#endregion
+
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+</head>
+<body>
+    <button id="authorize-button" style="display: none">Authorize</button>
+    <div id="ytbsp-status"></div>
+    <div id="YTBSP" class="large" style="width: 100%;">
+        <div class="ytbsp-header"></div>
+        <div>
+            <ul id="ytbsp-subs" style="width: 100%;">
+                <li id="ytbsp-lsl" style="width: 100%;">Loading subscription list</li>
+            </ul>
+        </div>
+        <div class="ytbsp-header ytbsp-footer"></div>
+        <div id="ytbsp-modal-darken">
+            <div id="ytbsp-modal" class="ytbsp-modal-light">
+                <div id="ytbsp-modal-content"></div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
